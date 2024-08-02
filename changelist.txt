@@ -1,0 +1,251 @@
+
+----------------------------------------------------------------------------------
+
+v0.6.5
+- nex SCP-096 model
+- some bugfixes
+- new console commands
+
+----------------------------------------------------------------------------------
+
+v0.6.4
+- new Class D models
+- one new SCP
+- fixed the bug that caused some of the doors to close after opening them
+- small bugfixes in SCP-096's pathfinding
+- the MTF shouldn't get stuck behind doors anymore
+- the checkboxes in the menu are now drawn properly even when using a lower resolution
+- the cursor is now shown in the ending screen
+
+----------------------------------------------------------------------------------
+
+V0.6.3
+- significantly reduced loading times when loading a game after dying
+- SCP-173 has different poses
+- some changes to 096's sound clips
+- a 096 loading screen
+- S-NAV Ultimate now shows 096's location
+- some minor bugfixes at Gate A (can't really tell more without spoiling)
+- the guard in the intro no longer freezes if you go to the end of the hallway
+- optimized the blur effect a bit
+- fixed the bug that caused SCP-106 to get stuck inside its containment cell
+if you turned off the magnets after recontaining it. So now it's possible to
+release it after it has been contained.
+- fixed the "Femur breaker" -sign in 106's containment room
+- fixed the decals that appear when SCP-106 spawns (so, the "cracks" are back)
+- two new anomalous ducks
+- added some dead bodies here and there
+
+----------------------------------------------------------------------------------
+
+V0.6.2
+- SCP-096 is now faster and easier to provoke
+- fixed a bug that caused severe framerate drops when SCP-096 was unable to
+find a path to the player
+- key configuration options in the main menu
+- putting the first aid kit in SCP-914 on Very Fine no longer crashes the game
+- new gunshot sound clips
+- some minor bugfixes
+
+----------------------------------------------------------------------------------
+
+v0.6.1
+- fixed the bug that crashed the game when equipping a navigator or a radio
+
+----------------------------------------------------------------------------------
+
+v0.6
+- Another exit and more endings
+- Crouching and hiding mechanics
+- Improved intro sequence (still a work in progress)
+- Better Class D models, although they're still just placeholders
+- Improved MTF AI. Now they head to the last location the player was spotted in, and 
+start randomly searching for him. They'll also try to recontain SCP-106 when they
+reach it's chamber.
+- An injury/bloodloss system, so now it's possible (although hard) to survive being 
+shot. Gunshot wounds make you bleed, and losing too much blood eventually kills you.
+Injuries can be healed with first aid kits, but it takes some time (so you can't just 
+start bandaging a wound while you're being shot at) and a regular first aid kit
+won't heal you completely. The degree of the injuries depends on which part of your 
+body got hit - headshots are still instakill.
+- Type "injure [0-5]" in the console if you want to check out the injury system
+- Ballistic vests which reduce the damage taken from gunshots
+- New SCP-106 model
+- Some new scripted events
+- Improved SCP-914 model
+- Some changes to SCP-173's AI - now it will move around the facility more actively
+- Some new rooms
+- A subtle "zoom effect" when you're looking at SCP-173 or SCP-106
+- A console command for spawning items (spawnitem [the name of the item])
+- An anomalous duck
+- A ton of small bugfixes
+
+- ...And a last minute addition, SCP-096. It's using a placeholder model made by
+Mirocaine until we get a better one.
+
+----------------------------------------------------------------------------------
+
+v0.5.5
+- animated MTF models
+- slightly improved MTF AI (it's still quite buggy though)
+- Gate B works again
+- it's no longer possible to clip through the "ceiling" in the cylindrical tunnels
+
+----------------------------------------------------------------------------------
+
+v0.5.5
+- fixed the save bug that caused buttons and keypads to disappear
+- fixed some lighting bugs ("light sprites" showing where they shouldn't)
+- adjusted the height of the player and the NPCs
+- finally fixed the access code in the burnt note
+
+----------------------------------------------------------------------------------
+
+v0.5.4
+- fixed a bug in SCP-079's containment chamber that made SCP-079 disappear and
+ caused random black walls and floors to appear in the chamber and other rooms.
+- fixed the "black wall of fog" in the intro
+- finding S-NAV Ultimate now affects the [REDACTED] in [REDACTED]
+- some waypoint bugfixes again
+
+----------------------------------------------------------------------------------
+
+v0.5.3
+- fixed the bug that caused the player to fall through the map when loading a new game
+- fixed some waypoint bugs
+- fixed the bug that caused the player to fall through the map in the pocket dimension
+- added a keycard in 106's containment room
+
+----------------------------------------------------------------------------------
+
+v0.5.2
+- fixed the save file corruption bug
+- optimized map rendering a bit, should help with the FPS issues
+- fixed the decals in the pocket dimension
+- fixed the bug that crashed the game when opening the doors to Harp's or Maynard's office
+- the lure subject can no longer appear outside 106's cell
+
+----------------------------------------------------------------------------------
+
+v0.5.1
+- the map generator no longer makes those empty, black rooms
+- fixed a bug in the aiming code of the MTF, now they won't miss 90% of the time
+- activating the screen at Gate B shouldn't cause a memory access violation anymore
+- fixed a texture bug and the keypads in the hallway above the maintenance tunnel
+- there was a bug that caused the game to reload the sounds of the MTF every 5 or so
+seconds, causing annoying twitching. Now they're loaded only the moment the MTF spawns.
+
+----------------------------------------------------------------------------------
+
+v0.5
+- GATE B and multiple endings. So now it's possible to get out and BEAT THE GAME.
+- Mobile Task Force groups whose job is to clear the facility of the escaped
+SCPs and other potential hazards (they still need some tweaking and their AI may 
+be a bit buggy at times)
+- some new rooms (including the silo of the Omega Warhead)
+- improved map generation algorithm:
+	- it shouldn't generate maps that are impossible to get through anymore
+	- no more of those black "fake walls"
+- SCP-106 uses an A*-based pathfinding algorithm, so now it won't just float
+towards the player through the map
+- sound clips for the lure subject used in SCP-106's recall protocol
+- some computer screens that you can click on and read
+- some new ambient sounds (thanks to Peanut)
+- improved loading screen
+- better sound clips for SCP-079
+- slightly improved SCP-173 model
+- wireframe console command
+- fixed some texture bugs in the map
+- DAT 420-J SHIT IS EVEN BETER THAN B4 MAN
+- a secret console command that has something to do with Halloween
+- plenty of small bugfixes
+
+----------------------------------------------------------------------------------
+
+
+v0.3.2
+- SCP-106's recall procedure finally works (even though the voice acting is still missing)
+- Improved pause menu
+
+
+----------------------------------------------------------------------------------
+
+v0.3.1
+- fixed the levers and buttons in 106's containment room
+- fixed the bug that blocked the doors of the elevators to the maintenance tunnel
+
+----------------------------------------------------------------------------------
+
+v0.3
+- new rooms and events
+- more radio broadcasts
+- some additions to SCP-106's pocket dimension
+- SCP-106's containment room
+- SCP-079's containment room
+- new voice acting for the intercom person in the intro
+- larger inventory
+- the maintenance tunnel is now back, scarier than ever
+- some improvements to the map generation algorithm
+- added noclip-command to the console
+- the distance of the camera fog now changes depending on the amount of light
+- fixed the bug that stopped the player from blinking when holding a paper
+- the player can no longer move faster by holding two movement keys at the same time
+- fixed the bug in the intro sequence that prevented the guard from shooting the player
+
+----------------------------------------------------------------------------------
+
+v0.2.1
+- replaced SCP-513 and SCP-513-1 with a new SCP
+- some new rooms
+- radio phones
+- fixed a bug that disabled collisions with some objects
+- added the options to disable the HUD and/or the bump mapping
+- (hopefully) fixed the black screen bug
+
+----------------------------------------------------------------------------------
+
+v0.2
+- changed BlitzMax to Blitz3D and got an engine expansion, which made it possible
+to implement these:
+	- bump and specular mapping
+	- better lighting, moving objects are now lit properly
+- added SCP-106's pocket dimension
+- new SCP-173 model
+- fixed a bug that made SCP-173 "flicker" through walls at times
+- added some new rooms, items and sound effects
+- made it possible to choose the map seed
+- started putting stuff in the options menu
+- fixed a bug that prevented the screen from going black when blinking with
+the navigator equipped
+
+----------------------------------------------------------------------------------
+
+v0.1.2
+- added two new rooms
+- modified some of the textures
+- added some new items
+- added some new sound effects
+- press F3 for a surprise
+- fixed some bugs in the saving system
+
+----------------------------------------------------------------------------------
+
+v0.1.1 
+- added the option to select the graphics- and audio device in the launcher
+- fixed the bug that occasionally stops the door from opening in the first room
+- fixed the collision problems with the containment doors (glitching through the
+  floor when near the doors or getting stuck inside them)
+- fixed the bug that made it possible to walk through walls in the first room
+- 173 can't kill you through the walls anymore
+- made some of the rooms a bit brighter
+- fixed some bugs that occurred when starting a new game after dying
+	- some of the items sometimes stayed in the inventory
+	- gas mask stayed on if it was equipped in the previous game
+	- the rapid blinking caused by smoke stayed for a while in the
+	  new game
+- new menu music
+- saving system works now, though there are still probably some bugs in it
+- disabled Y button from teleporting you to SCP-914
+- fixed some typos in the code, not sure if they were causing any actual
+bugs or crashes
+- fixed the bug that made it possible duplicate the SCP-420-J
