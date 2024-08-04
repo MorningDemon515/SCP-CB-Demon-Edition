@@ -36,7 +36,7 @@ Global SelectedInputBox%
 
 Global SavePath$ = "Saves\"
 
-;nykyisen tallennuksen nimi ja samalla miss‰ kansiossa tallennustiedosto sijaitsee saves-kansiossa
+;nykyisen tallennuksen nimi ja samalla miss√§ kansiossa tallennustiedosto sijaitsee saves-kansiossa
 Global CurrSave$
 
 Global SaveGameAmount%
@@ -164,7 +164,7 @@ Function UpdateMainMenu()
 		MenuBlinkDuration(0) = Rand(200, 500)
 	End If
 	
-	SetFont Font1
+	TextSetFont Font1
 	
 	MenuBlinkTimer(1)=MenuBlinkTimer(1)-FPSfactor
 	If MenuBlinkTimer(1) < MenuBlinkDuration(1) Then
@@ -207,7 +207,7 @@ Function UpdateMainMenu()
 		EndIf
 	EndIf
 	
-	SetFont Font2
+	TextSetFont Font2
 	
 	DrawImage(MenuText, GraphicWidth / 2 - ImageWidth(MenuText) / 2, GraphicHeight - 20 * MenuScale - ImageHeight(MenuText))
 	
@@ -351,7 +351,7 @@ Function UpdateMainMenu()
 				height = 70 * MenuScale
 				
 				Color(255, 255, 255)
-				SetFont Font2
+				TextSetFont Font2
 				Text(x + width / 2, y + height / 2, "NEW GAME", True, True)
 				
 				x = 160 * MenuScale
@@ -359,7 +359,7 @@ Function UpdateMainMenu()
 				width = 580 * MenuScale
 				height = 296 * MenuScale
 				
-				SetFont Font1
+				TextSetFont Font1
 				
 				Text (x + 20 * MenuScale, y + 20 * MenuScale, "Name:")
 				CurrSave = InputBox(x + 100 * MenuScale, y + 15 * MenuScale, 200 * MenuScale, 30 * MenuScale, CurrSave, 1)
@@ -382,7 +382,7 @@ Function UpdateMainMenu()
 				Text (x + 20 * MenuScale, y + 200 * MenuScale, "Map seed:")
 				RandomSeed = Left(InputBox(x+150*MenuScale, y+195*MenuScale, 200*MenuScale, 30*MenuScale, RandomSeed, 3),15)
 				
-				SetFont Font2
+				TextSetFont Font2
 				
 				If DrawButton(x + 420 * MenuScale, y + height + 20 * MenuScale, (580 - 400 - 20) * MenuScale, 70 * MenuScale, "START", False) Then
 					If CurrSave <> "" Then
@@ -427,11 +427,11 @@ Function UpdateMainMenu()
 				width = 400 * MenuScale
 				height = 70 * MenuScale
 				
-				SetFont Font2				
+				TextSetFont Font2				
 				Color(255, 255, 255)
-				SetFont Font2
+				TextSetFont Font2
 				Text(x + width / 2, y + height / 2, "LOAD GAME", True, True)
-				SetFont Font1
+				TextSetFont Font1
 				
 				x = 160 * MenuScale
 				y = y + height + 20 * MenuScale
@@ -487,16 +487,16 @@ Function UpdateMainMenu()
 				height = 70 * MenuScale
 				
 				Color(255, 255, 255)
-				SetFont Font2
+				TextSetFont Font2
 				Text(x + width / 2, y + height / 2, "OPTIONS", True, True)
-				SetFont Font1
+				TextSetFont Font1
 				
 				x = 160 * MenuScale
 				y = y + height + 20 * MenuScale
 				width = 580 * MenuScale
 				height = 350 * MenuScale
 				
-				SetFont Font1
+				TextSetFont Font1
 				
 				Text (x + 20 * MenuScale, y + 20 * MenuScale, "Mouse sensitivity:")
 				
@@ -577,7 +577,7 @@ Function UpdateMainMenu()
 	
 	If Fullscreen Then DrawImage CursorIMG, MouseX(),MouseY()
 	
-	SetFont Font1
+	TextSetFont Font1
 End Function
 
 Function UpdateLauncher()
@@ -588,8 +588,10 @@ Function UpdateLauncher()
 	Graphics3D(LauncherWidth, LauncherHeight, 0, 2)
 	
 	SetBuffer BackBuffer()
+
+	TextInitialize BackBuffer();SpeedText
 	
-	Font1 = LoadFont("GFX\TI-83.ttf", 18)
+	Font1 = TextLoadFont("Courier New", 18,0,0,0,TEXT_DEFAULT,"")
 	MenuWhite = LoadImage("GFX\menu\menuwhite.jpg")
 	MenuBlack = LoadImage("GFX\menu\menublack.jpg")	
 	MaskImage MenuBlack, 255,255,0
@@ -651,18 +653,18 @@ Function UpdateLauncher()
 		Color 255, 255, 255
 		x = 30
 		y = 369
-		Rect(x - 10, y, 240, 95)
+		Rect(x - 10, y, 340, 95)
 		Text(x - 10, y - 25, "Graphics:")
 		
 		y=y+10
 		For i = 1 To CountGfxDrivers()
 			Color 0, 0, 0
-			If SelectedGFXDriver = i Then Rect(x - 1, y - 1, 190, 20, False)
+			If SelectedGFXDriver = i Then Rect(x - 1, y - 1, 290, 20, False)
 			;text(x, y, bbGfxDriverName(i))
-			LimitText(GfxDriverName(i), x, y, 190)
-			If MouseOn(x - 1, y - 1, 190, 20) Then
+			LimitText(ANSIToUTF8(GfxDriverName(i)), x, y, 290)
+			If MouseOn(x - 1, y - 1, 290, 20) Then
 				Color 100, 100, 100
-				Rect(x - 1, y - 1, 190, 20, False)
+				Rect(x - 1, y - 1, 290, 20, False)
 				If MouseHit1 Then SelectedGFXDriver = i
 			EndIf
 			
@@ -737,7 +739,7 @@ Function UpdateLauncher()
 	
 	PutINIValue(OptionFile, "options", "audio driver", SelectedAudioDriver)
 	PutINIValue(OptionFile, "options", "gfx driver", SelectedGFXDriver)
-	
+	TextDeinitialize
 End Function
 
 
@@ -888,7 +890,7 @@ Function DrawLoading(percent%, shortloading=False)
 		
 		
 		If SelectedLoadingScreen\title = "CWM" Then
-			SetFont Font2
+			TextSetFont Font2
 			strtemp$ = ""
 			temp = Rand(2,9)
 			For i = 0 To temp
@@ -920,13 +922,13 @@ Function DrawLoading(percent%, shortloading=False)
 			For i = 0 To Rand(10,15);temp
 				strtemp$ = Replace(SelectedLoadingScreen\txt[0],Mid(SelectedLoadingScreen\txt[0],Rand(1,Len(strtemp)-1),1),Chr(Rand(130,250)))
 			Next		
-			SetFont Font1
+			TextSetFont Font1
 			RowText(strtemp, GraphicWidth / 2-200, GraphicHeight / 2 +120,400,300,True)		
 		Else
-			SetFont Font2
+			TextSetFont Font2
 			Text(GraphicWidth / 2, GraphicHeight / 2 +80, SelectedLoadingScreen\title, True, True)
 			
-			SetFont Font1
+			TextSetFont Font1
 			RowText(SelectedLoadingScreen\txt[LoadingScreenText], GraphicWidth / 2-200, GraphicHeight / 2 +120,400,300,True)		
 		EndIf
 		
@@ -1027,7 +1029,7 @@ Function DrawButton%(x%, y%, width%, height%, txt$, bigfont% = True)
 	EndIf
 	
 	Color (255, 255, 255)
-	If bigfont Then SetFont Font2 Else SetFont Font1
+	If bigfont Then TextSetFont Font2 Else TextSetFont Font1
 	Text(x + width / 2, y + height / 2, txt, True, True)
 	
 	Return clicked
@@ -1082,53 +1084,8 @@ Function SlideBar#(x%, y%, width%, value#)
 	
 End Function
 
-
-
-
-Function RowText(A$, X, Y, W, H, align% = 0, Leading = 0)
-	;Display A$ starting at X,Y - no wider than W And no taller than H (all in pixels).
-	;Leading is optional extra vertical spacing in pixels
-	Local LinesShown = 0
-	Local Height = StringHeight(A$) + Leading
-	Local b$
-	
-	While Len(A) > 0
-		Local space = Instr(A$, " ")
-		If space = 0 Then space = Len(A$)
-		Local temp$ = Left(A$, space)
-		Local trimmed$ = Trim(temp) ;we might ignore a final space 
-		Local extra = 0 ;we haven't ignored it yet
-		;ignore final space If doing so would make a word fit at End of Line:
-		If (StringWidth (b$ + temp$) > W) And (StringWidth (b$ + trimmed$) <= W) Then
-			temp = trimmed
-			extra = 1
-		EndIf
-		
-		If StringWidth (b$ + temp$) > W Then ;too big, so Print what will fit
-			If align Then
-				Text(X + W / 2 - (StringWidth(b) / 2), LinesShown * Height + Y, b)
-			Else
-				Text(X, LinesShown * Height + Y, b)
-			EndIf			
-			
-			LinesShown = LinesShown + 1
-			b$=""
-		Else ;append it To b$ (which will eventually be printed) And remove it from A$
-			b$ = b$ + temp$
-			A$ = Right(A$, Len(A$) - (Len(temp$) + extra))
-		EndIf
-		
-		If ((LinesShown + 1) * Height) > H Then Exit ;the Next Line would be too tall, so leave
-	Wend
-	
-	If (b$ <> "") And((LinesShown + 1) <= H) Then
-		If align Then
-			Text(X + W / 2 - (StringWidth(b) / 2), LinesShown * Height + Y, b) ;Print any remaining Text If it'll fit vertically
-		Else
-			Text(X, LinesShown * Height + Y, b) ;Print any remaining Text If it'll fit vertically
-		EndIf
-	EndIf
-					
+Function RowText(A$, X, Y, W, H, align% = 0, Leading = 0)	
+	TextDrawRect X,Y,W,H,A,align,TEXT_CENTER,TEXT_UTF8			
 End Function
 
 Function LimitText%(txt$, x%, y%, width%)
@@ -1143,15 +1100,6 @@ Function LimitText%(txt$, x%, y%, width%)
 		Text(x, y, Left(txt, Max(Len(txt) - UnFitting / LetterWidth - 4, 1)) + "...")
 	End If
 End Function
-
-
-
-
-
-
-
-
-
 
 Function alpha_precalc_image(img)
 	
