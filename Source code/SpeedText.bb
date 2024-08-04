@@ -22,6 +22,13 @@ Const TEXT_CLEARTYPE		= 3
 Const TEXT_WORDWRAP	= 1
 Const TEXT_DONTCLIP	= 2
 
+Global FontFlag
+if AATextEnabled = 0 Then
+   FontFlag = TEXT_DEFAULT
+Else If AATextEnabled = 1 Then
+   FontFlag = TEXT_ANTIALIASED
+End If      
+
 Function Text(x%,y%,text$,cx% = 0,cy% = 0,encode = TEXT_UTF8 )
     TextSetColor ColorRed(), ColorGreen(), ColorBlue()
     TextDraw x,y,text,cx,cy,encode

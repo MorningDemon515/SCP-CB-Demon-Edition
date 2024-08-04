@@ -1,14 +1,21 @@
 
 Include "Source code/IniControler.bb"
-Include "Source code/SpeedText.bb"
 
+Local InitErrorStr$ = ""
+If FileSize("SpeedText.dll")=0 Then InitErrorStr=InitErrorStr+ "SpeedText.dll"+Chr(13)+Chr(10)
+If FileSize("MDEncode.dll")=0 Then InitErrorStr=InitErrorStr+ "MDEncode.dll"+Chr(13)+Chr(10)
+
+If Len(InitErrorStr)>0 Then
+	RuntimeError "The following DLLs were not found in the game directory:"+Chr(13)+Chr(10)+Chr(13)+Chr(10)+InitErrorStr
+EndIf
 
 Global OptionFile$ = "options.ini"
+Global AATextEnabled% = GetINIInt("options.ini", "options", "aatext")
 
 Global Font1
 
 Global VersionNumber$ = "0.6.5"
-Global GameVersion = "1.2"
+Global GameVersion$ = "1.2"
 
 AppTitle "SCP-收容失效鬼畜版启动器"
 
@@ -18,6 +25,8 @@ Global ButtonSFX%
 Dim ArrowIMG(4)
 
 ;[Block]
+
+Include "Source code/SpeedText.bb"
 
 Global LauncherWidth%= Min(GetINIInt(OptionFile, "launcher", "launcher width"), 1024)
 Global LauncherHeight% = Min(GetINIInt(OptionFile, "launcher", "launcher height"), 768)
@@ -105,8 +114,8 @@ Global SelectedLoadingScreen.LoadingScreens, LoadingScreenAmount%, LoadingScreen
 Global LoadingBack = LoadImage("Loadingscreens\loadingback.jpg")
 InitLoadingScreens("Loadingscreens\loadingscreens.ini")
 
-Font1 = TextLoadFont("Courier New", Int(18 * (GraphicHeight / 1024.0)),0,0,0,TEXT_DEFAULT,"")
-Global Font2% = TextLoadFont("Courier New", Int(60 * (GraphicHeight / 1024.0)),0,0,0,TEXT_DEFAULT,"")
+Font1 = TextLoadFont("Courier New", Int(18 * (GraphicHeight / 1024.0)),0,0,0,FontFlag,"")
+Global Font2% = TextLoadFont("Courier New", Int(60 * (GraphicHeight / 1024.0)),0,0,0,FontFlag,"")
 TextSetFont Font2
 
 Global BlinkMeterIMG% = LoadImage("GFX\blinkmeter.jpg")

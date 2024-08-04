@@ -316,7 +316,8 @@ Function UpdateMainMenu()
 					PutINIValue(OptionFile, "options", "music volume", MusicVolume)
 					PutINIValue(OptionFile, "options", "mouse sensitivity", MouseSens)
 					PutINIValue(OptionFile, "options", "invert mouse y", InvertMouse)
-					PutINIValue(OptionFile, "options", "bump mapping enabled", BumpEnabled)			
+					PutINIValue(OptionFile, "options", "bump mapping enabled", BumpEnabled)		
+					PutINIValue(OptionFile, "options", "aatext", AATextEnabled)		
 					PutINIValue(OptionFile, "options", "HUD enabled", HUDenabled)	
 					
 					PutINIValue(OptionFile, "options", "Right key", KEY_RIGHT)
@@ -521,8 +522,12 @@ Function UpdateMainMenu()
 				HUDenabled = DrawTick(x + 200 * MenuScale, y + 138 * MenuScale, HUDenabled)		
 				
 				Color 255,255,255				
-				Text (x + 20 * MenuScale, y + 180 * MenuScale, "Enable bump mapping:")	
-				BumpEnabled = DrawTick(x + 200 * MenuScale, y + 178 * MenuScale, BumpEnabled)		
+				Text (x + 20 * MenuScale, y + 170 * MenuScale, "Enable bump mapping:")	
+				BumpEnabled = DrawTick(x + 200 * MenuScale, y + 168 * MenuScale, BumpEnabled)	
+
+				Color 255,255,255				
+				Text (x + 20 * MenuScale, y + 200 * MenuScale, "Anti aliasing text:")	
+				AATextEnabled = DrawTick(x + 200 * MenuScale, y + 198 * MenuScale, AATextEnabled)		
 				
 				Text (x + 20 * MenuScale, y + 220 * MenuScale, "Control configuration:")	
 				
@@ -591,7 +596,7 @@ Function UpdateLauncher()
 
 	TextInitialize BackBuffer();SpeedText
 	
-	Font1 = TextLoadFont("Courier New", 18,0,0,0,TEXT_DEFAULT,"")
+	Font1 = TextLoadFont("Courier New", 18,0,0,0,TEXT_ANTIALIASED,"")
 	MenuWhite = LoadImage("GFX\menu\menuwhite.jpg")
 	MenuBlack = LoadImage("GFX\menu\menublack.jpg")	
 	MaskImage MenuBlack, 255,255,0
