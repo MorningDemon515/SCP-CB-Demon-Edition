@@ -106,7 +106,7 @@ Global GameSaved%
 ;---------------------------------------------------------------------------------------------------------------------
 
 ;[Block]
-
+PlayStartupVideos()
 Global CursorIMG = LoadImage("GFX\cursor.png")
 
 Global SelectedLoadingScreen.LoadingScreens, LoadingScreenAmount%, LoadingScreenText%
@@ -8234,7 +8234,51 @@ Function EntityScaleZ#(entity%, globl% = False)
 	Return Sqr(TFormedX() * TFormedX() + TFormedY() * TFormedY() + TFormedZ() * TFormedZ())
 End Function 
 
+Function PlayStartupVideos()
+	
+	HidePointer()
+	Local SplashScreenAudio%
+	Local Movie%
+	Local ScaledGraphicHeight%
+	Local Ratio# = Float(GraphicWidth) / Float(GraphicHeight)
 
+	If Ratio > 1.76 And Ratio < 1.78 Then
+		ScaledGraphicHeight = GraphicHeight
+	Else
+		ScaledGraphicHeight = Float(GraphicWidth) / (16.0 / 9.0)
+	EndIf
+
+	Local MovieFile$, i%
+
+	;For i = 0 To 1
+	;	Select i
+	;		Case 0
+				;[Block]
+				MovieFile = "GFX\menu\startup_Undertow"
+				;[End Block]
+	;	End Select
+
+		Movie% = OpenMovie(MovieFile + ".avi")
+		SplashScreenAudio% = PlayMusic(MovieFile + ".ogg")
+
+		Repeat
+			Cls()
+			DrawMovie(Movie, 0, (GraphicHeight / 2 - ScaledGraphicHeight / 2), GraphicWidth, ScaledGraphicHeight)
+			Font3 = TextLoadFont("Courier New", 32,0,0,0,FontFlag,"")
+		    TextSetFont(Font3)
+		    Text GraphicWidth/2+(-220),GraphicHeight/2 + 300,"Press Any Key To Continue"
+			Flip()
+			
+		Until (GetKey() Or (Not ChannelPlaying(SplashScreenAudio)))
+		
+		StopChannel(SplashScreenAudio)
+		CloseMovie(Movie)
+
+		Cls()
+		Flip()
+	;Next
+	ShowPointer()
+End Function
 
 ;~IDEal Editor Parameters:
 ;~F#F#5F#CD#D1#D8#21D#2EA#306#371#37E#40E#484#49B#4A4#4D8#537#117D#1212#1225#139F
