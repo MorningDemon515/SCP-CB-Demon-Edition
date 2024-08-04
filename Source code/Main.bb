@@ -1,5 +1,4 @@
 
-Include "FastExt.bb"
 Global OptionFile$ = "options.ini"
 
 Global Font1
@@ -67,8 +66,6 @@ Else
 	Else
 		Graphics3D(GraphicWidth, GraphicHeight, Depth, 2)
 	End If
-	
-	initext
 	
 EndIf
 
@@ -533,7 +530,7 @@ Global CurrCameraZoom#
 Global MouseSens# = GetINIFloat("options.ini", "options", "mouse sensitivity")
 
 Global BlurTimer#
-Include "dreamfilter.bb"
+Include "Source code/dreamfilter.bb"
 
 Dim LightSpriteTex(10)
 
@@ -733,11 +730,11 @@ DrawLoading(35, True)
 
 ;----------------------------------------------  Items  -----------------------------------------------------
 
-Include "Items.bb"
+Include "Source code/Items.bb"
 
 ;--------------------------------------- Particles ------------------------------------------------------------
 
-Include "Particles.bb"
+Include "Source code/Particles.bb"
 
 ;-------------------------------------  Doors --------------------------------------------------------------
 
@@ -1169,11 +1166,11 @@ End Function
 
 DrawLoading(40,True)
 
-Include "MapSystem.bb"
+Include "Source code/MapSystem.bb"
 
 DrawLoading(80,True)
 
-Include "NPCs.bb"
+Include "Source code/NPCs.bb"
 
 ;-------------------------------------  Events --------------------------------------------------------------
 
@@ -2956,7 +2953,8 @@ Function UpdateEvents()
 						EndIf
 					EndIf
 				EndIf
-			Case "room2tesla"				temp = True
+			Case "room2tesla"
+				temp = True
 				If e\EventState2 > 70*3.5 And e\EventState2 < 70*90 Then temp = False
 				
 				If PlayerRoom = e\room And temp Then
@@ -4332,11 +4330,9 @@ Dim DecalTextures%(20)
 Global Monitor%, MonitorTexture%
 Global CamBaseOBJ%, CamOBJ%
 
-BumpPower 0.03
-
 ;---------------------------------------------------------------------------------------------------
 
-Include "menu.bb"
+Include "Source code/menu.bb"
 MainMenuOpen = True
 
 ;---------------------------------------------------------------------------------------------------
@@ -6974,7 +6970,7 @@ Function NullGame()
 	
 End Function
 
-Include "save.bb"
+Include "Source code/save.bb"
 
 ;--------------------------------------- music & sounds ----------------------------------------------
 
